@@ -1,0 +1,105 @@
+<div class="content-header row">
+  <div class="content-header-left col-md-6 col-12 mb-1">
+    <h3 class="content-header-title">Vorspeisen</h3>
+  </div>
+  <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
+    <div class="breadcrumb-wrapper col-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard/home">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a>Vorspeisen</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="content-body">
+  <section class="basic-elements">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Vorspeisen</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                        <label for="">Search Vorspeisen.</label>
+                          <input type="text"
+                          class="form-control" [(ngModel)]="food.title" placeholder="Search Vorspeisen..."  style="max-width: 300px">
+                      </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                      <fieldset>
+                        <label for="enter">Add a Vorspeisen:</label>
+                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addVorspeisen(addApitizers)">Add</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <app-spinner *ngIf="showSpinner"></app-spinner>
+                  <div class="table-responsive" *ngIf="!showSpinner">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Ingredients</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of vorspeisen | filterBy: food; let i = index">
+                            <th scope="row">{{i + 1}}</th>
+                            <td class="small">{{item?.title}}</td>
+                            <td class="small"><p *ngFor="let it of item.ingredients">{{it}}</p></td>
+                            <td class="small">{{item?.price}}
+                            </td>
+                            <td class="small">
+                                <span>View</span>
+                                <a style="color: green;" (click)="view(uploadSong, item)"><i class="ft-edit"></i></a>
+                                <br>
+                              <span (click)="delete(item)" style="cursor: pointer;">Delete</span>
+                              <a style="color: red" (click)="delete(item)"><i class="ft-trash-2"></i></a>
+                            </td>
+      
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<ng-template #addApitizers let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Vorspeisen</h4>
+      <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card-body">
+        
+        
+        <br>
+        <div class="row">
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="sendPushNotification()">Add</button>
+        </div>
+  
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
