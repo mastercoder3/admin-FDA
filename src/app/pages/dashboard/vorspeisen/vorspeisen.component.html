@@ -55,15 +55,14 @@
                           <tr *ngFor="let item of vorspeisen | filterBy: food; let i = index">
                             <th scope="row">{{i + 1}}</th>
                             <td class="small">{{item?.title}}</td>
-                            <td class="small"><p *ngFor="let it of item.ingredients">{{it}}</p></td>
+                            <td class="small">{{item?.ingredients}}</td>
                             <td class="small">{{item?.price}}
                             </td>
                             <td class="small">
-                                <span>View</span>
-                                <a style="color: green;" (click)="view(uploadSong, item)"><i class="ft-edit"></i></a>
+                                <a  (click)="view(addApitizers, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
                                 <br>
-                              <span (click)="delete(item)" style="cursor: pointer;">Delete</span>
-                              <a style="color: red" (click)="delete(item)"><i class="ft-trash-2"></i></a>
+                              
+                              <a  (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
                             </td>
       
                           </tr>
@@ -89,12 +88,47 @@
     </div>
     <div class="modal-body">
       <div class="card-body">
-        
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                <fieldset>
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" [(ngModel)]="data.title"
+                  class="form-control" placeholder="Title" >
+                </fieldset>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="title">Ingredients:</label>
+                    <input type="text" id="title" [(ngModel)]="data.ingredients"
+                    class="form-control" placeholder="Ingredients" >
+                  </fieldset>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                <fieldset>
+                  <label for="title">Size:</label>
+                  <input type="text" id="title" [(ngModel)]="data.size"
+                  class="form-control" placeholder="Size" value="Normal" >
+                </fieldset>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="title">Price:</label>
+                    <input type="number" id="title" [(ngModel)]="data.price"
+                    class="form-control" placeholder="Price" >
+                  </fieldset>
+              </div>
+        </div>
         
         <br>
-        <div class="row">
-          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="sendPushNotification()">Add</button>
+        <div class="row" *ngIf="!openforedit">
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addApetizers()">Add</button>
         </div>
+        <div class="row" *ngIf="openforedit">
+            <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="updateApetizers()">Update</button>
+          </div>
   
   
       </div>

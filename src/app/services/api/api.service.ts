@@ -13,4 +13,12 @@ export class ApiService {
   getAllVorspeisen(){
     return this.afs.collection('vorspeisen').snapshotChanges();
   }
+
+  addVorspeisen(data){
+    return this.afs.collection('vorspeisen').add(data);
+  }
+
+  updateVorspeisen(id,data){
+    return this.afs.doc('vorspeisen/'+id).update(data);
+  }
 }
