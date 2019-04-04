@@ -134,4 +134,22 @@ export class ApiService {
     return this.afs.doc('dessert/'+id).delete();
   }
 
+  // Beverages
+
+  getAllBeverages(){
+    return this.afs.collection('beverages').snapshotChanges();
+  }
+
+  addBeverage(data){
+    return this.afs.collection('beverages').add(data);
+  }
+
+  updateBeverage(id,data){
+    return this.afs.doc('beverages/'+id).update(data);
+  }
+
+  deleteBeverage(id){
+    return this.afs.doc('beverages/'+id).delete();
+  }
+
 }
