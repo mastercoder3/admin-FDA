@@ -99,4 +99,15 @@ export class VorspeisenComponent implements OnInit {
     this.openforedit = true;
   }
 
+  delete(item){
+    if(confirm(`Are you sure you want to delete ${item.title}`)){
+      this.api.deleteVorspeisen(item.did)
+        .then(res => {
+          this.toastr.success('Pizza deleted.','Operation Completed');
+        }, err =>{
+          this.toastr.error(err.message,'Error While Deleting.');
+        })
+    }
+  }
+
 }

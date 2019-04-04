@@ -11,6 +11,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { TagInputModule } from 'ngx-chips';
 
 //firebase
 import { AngularFireModule } from '@angular/fire';
@@ -30,6 +31,8 @@ import { SpinnerComponent } from './pages/shared/ui/spinner/spinner.component';
 import { AuthService } from './services/auth/auth.service';
 import { ApiService } from './services/api/api.service';
 import { VorspeisenComponent } from './pages/dashboard/vorspeisen/vorspeisen.component';
+import { PizzaComponent } from './pages/dashboard/pizza/pizza.component';
+import { PizzaExtrasComponent } from './pages/dashboard/pizza-extras/pizza-extras.component';
 
 
 const routes = [
@@ -38,7 +41,9 @@ const routes = [
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
-    {path: 'vorspeisen', component: VorspeisenComponent}
+    {path: 'vorspeisen', component: VorspeisenComponent},
+    {path: 'pizza', component: PizzaComponent},
+    {path: 'pizza-extras', component: PizzaExtrasComponent}
   ]}
 ];
 
@@ -51,7 +56,9 @@ const routes = [
     DashboardComponent,
     HomeComponent,
     SpinnerComponent,
-    VorspeisenComponent
+    VorspeisenComponent,
+    PizzaComponent,
+    PizzaExtrasComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +74,7 @@ const routes = [
     NgxUiLoaderModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
+    TagInputModule,
     FilterPipeModule,
     RouterModule.forRoot(routes)
   ],
