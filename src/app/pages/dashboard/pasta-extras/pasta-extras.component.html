@@ -1,0 +1,115 @@
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-1">
+      <h3 class="content-header-title">Pizza</h3>
+    </div>
+    <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
+      <div class="breadcrumb-wrapper col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/dashboard/home">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item"><a routerLink="/dashboard/pasta">Pasta</a>
+          </li>
+          <li class="breadcrumb-item"><a>Pasta Extras</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="content-body">
+    <section class="basic-elements">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Extras</h4>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                        <fieldset>
+                            <label for="enter">Add a Extras:</label>
+                            <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addExtras(addExtrass)">Add</button>
+                        </fieldset>
+                    </div>
+                </div>
+                <br><br>
+                <app-spinner *ngIf="showSpinner"></app-spinner>
+                <div class="table-responsive" *ngIf="!showSpinner">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Price</th>
+                          <th>Extras</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of pextras | filterBy: food; let i = index">
+                          <th scope="row">{{i + 1}}</th>
+                          <td class="small">{{item?.price}}</td>
+                          <td class="small"><span *ngFor="let it of item?.items">{{it.display}}<br></span></td>
+                          <td class="small">
+                              <a  (click)="view(addExtrass, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
+                              <br>
+                            
+                            <a  (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
+                          </td>
+    
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  
+<ng-template #addExtrass let-modal>
+    <div class="modal-header" >
+      <h4 class="modal-title" id="modal-basic-title">Add Pasta Extras</h4>
+      <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card-body">
+        <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="title">Price:</label>
+                    <input type="number" id="title" [(ngModel)]="data.price"
+                    class="form-control" placeholder="Price" >
+                  </fieldset>
+              </div>
+              <div class="col-xl-16 col-lg-6 col-md-12 mb-1" style="height: 200px;">
+                <fieldset>
+                  <label for="artist">Items: <small>(Press Enter for multiple.)</small> </label>
+                  <tag-input [(ngModel)]='data.items' secondaryPlaceholder="Item Name" theme='bootstrap3-info'></tag-input>
+                </fieldset>
+              </div>
+        </div>
+        
+        <br>
+        <div class="row" *ngIf="!openforedit">
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToExtra()">Add</button>
+        </div>
+        <br>
+        <div class="row" *ngIf="openforedit">
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="update()">Update</button>
+        </div>
+  
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>

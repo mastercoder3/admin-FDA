@@ -61,4 +61,77 @@ export class ApiService {
   deleteExtras(id){
     return this.afs.doc('pextras/'+id).delete();
   }
+
+  // Pasta
+
+  getAllPasta(){
+    return this.afs.collection('pasta').snapshotChanges();
+  }
+
+  addPasta(data){
+    return this.afs.collection('pasta').add(data);
+  }
+
+  updatePasta(id,data){
+    return this.afs.doc('pasta/'+id).update(data);
+  }
+
+  deletePasta(id){
+    return this.afs.doc('pasta/'+id).delete();
+  }
+
+  // Pasta Extras
+
+  getAllPastaExtras(){
+    return this.afs.collection('pastaextras').snapshotChanges();
+  }
+
+  addPastaExtras(data){
+    return this.afs.collection('pastaextras').add(data);
+  }
+
+  updatePastaExtras(id,data){
+    return this.afs.doc('pastaextras/'+id).update(data);
+  }
+
+  deletePastaExtras(id){
+    return this.afs.doc('pastaextras/'+id).delete();
+  }
+
+  // Salads
+
+  getAllSalads(){
+    return this.afs.collection('salads').snapshotChanges();
+  }
+
+  addSalads(data){
+    return this.afs.collection('salads').add(data);
+  }
+
+  updateSalads(id,data){
+    return this.afs.doc('salads/'+id).update(data);
+  }
+
+  deleteSalads(id){
+    return this.afs.doc('salads/'+id).delete();
+  }
+
+  // Dessert
+
+  getAllDessert(){
+    return this.afs.collection('dessert').snapshotChanges();
+  }
+
+  addDessert(data){
+    return this.afs.collection('dessert').add(data);
+  }
+
+  updateDessert(id,data){
+    return this.afs.doc('dessert/'+id).update(data);
+  }
+
+  deleteDessert(id){
+    return this.afs.doc('dessert/'+id).delete();
+  }
+
 }

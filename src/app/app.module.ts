@@ -33,6 +33,11 @@ import { ApiService } from './services/api/api.service';
 import { VorspeisenComponent } from './pages/dashboard/vorspeisen/vorspeisen.component';
 import { PizzaComponent } from './pages/dashboard/pizza/pizza.component';
 import { PizzaExtrasComponent } from './pages/dashboard/pizza-extras/pizza-extras.component';
+import { PastaComponent } from './pages/dashboard/pasta/pasta.component';
+import { PastaExtrasComponent } from './pages/dashboard/pasta-extras/pasta-extras.component';
+import { SaladComponent } from './pages/dashboard/salad/salad.component';
+import { DessertComponent } from './pages/dashboard/dessert/dessert.component';
+import { BeveragesComponent } from './pages/dashboard/beverages/beverages.component';
 
 
 const routes = [
@@ -43,7 +48,12 @@ const routes = [
     {path: 'home', component: HomeComponent},
     {path: 'vorspeisen', component: VorspeisenComponent},
     {path: 'pizza', component: PizzaComponent},
-    {path: 'pizza-extras', component: PizzaExtrasComponent}
+    {path: 'pizza-extras', component: PizzaExtrasComponent},
+    {path: 'pasta', component: PastaComponent},
+    {path: 'pasta-extras', component: PastaExtrasComponent},
+    {path: 'salad', component: SaladComponent},
+    {path: 'dessert', component: DessertComponent},
+    {path: 'beverages', component: BeveragesComponent}
   ]}
 ];
 
@@ -58,7 +68,12 @@ const routes = [
     SpinnerComponent,
     VorspeisenComponent,
     PizzaComponent,
-    PizzaExtrasComponent
+    PizzaExtrasComponent,
+    PastaComponent,
+    PastaExtrasComponent,
+    SaladComponent,
+    DessertComponent,
+    BeveragesComponent
   ],
   imports: [
     BrowserModule,

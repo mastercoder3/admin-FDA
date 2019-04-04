@@ -1,0 +1,141 @@
+<div class="content-header row">
+  <div class="content-header-left col-md-6 col-12 mb-1">
+    <h3 class="content-header-title">Pasta</h3>
+  </div>
+  <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
+    <div class="breadcrumb-wrapper col-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard/home">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a>Pasta</a>
+        </li>
+        <li class="breadcrumb-item" ><a routerLink="/dashboard/pasta-extras">Pasta Extras</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="content-body">
+  <section class="basic-elements">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Pasta</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                        <label for="">Search Pasta.</label>
+                          <input type="text"
+                          class="form-control" [(ngModel)]="food.title" placeholder="Search Pasta..."  style="max-width: 300px">
+                      </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                      <fieldset>
+                        <label for="enter">Add a Pasta:</label>
+                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addPasta(addpastas)">Add</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <app-spinner *ngIf="showSpinner"></app-spinner>
+                  <div class="table-responsive" *ngIf="!showSpinner">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Ingredients</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of pasta | filterBy: food; let i = index">
+                            <th scope="row">{{i + 1}}</th>
+                            <td class="small">{{item?.title}}</td>
+                            <td class="small">{{item?.ingredients}}</td>
+                            <td class="small">
+                              {{item.price}}
+                            </td>
+                            <td class="small">
+                                <a  (click)="view(addpastas, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
+                                <br>
+                              
+                              <a  (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
+                            </td>
+      
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<ng-template #addpastas let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Pasta</h4>
+      <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card-body">
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                <fieldset>
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" [(ngModel)]="data.title"
+                  class="form-control" placeholder="Title" >
+                </fieldset>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="title">Ingredients:</label>
+                    <input type="text" id="title" [(ngModel)]="data.ingredients"
+                    class="form-control" placeholder="Ingredients" >
+                  </fieldset>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                <fieldset>
+                  <label for="title">Size:</label>
+                  <h2 id="title">Normal.</h2>
+                </fieldset>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="title">Price:</label>
+                    <input type="number" id="title" [(ngModel)]="data.price"
+                    class="form-control" placeholder="Price" >
+                  </fieldset>
+              </div>
+        </div>
+        
+        <br>
+        <div class="row" *ngIf="!openforedit">
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToPasta()">Add</button>
+        </div>
+        <div class="row" *ngIf="openforedit">
+            <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="updatePasta()">Update</button>
+          </div>
+  
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
