@@ -152,4 +152,10 @@ export class ApiService {
     return this.afs.doc('beverages/'+id).delete();
   }
 
+  // Push notifications
+
+  setPushNotification(data){
+    return this.afs.doc('notifications/push').update(data);
+  }
+
 }

@@ -18,6 +18,52 @@
           </li>
           <li class="nav-item"><a routerLink="/dashboard/beverages"><i class="ft-settings"></i><span class="menu-title">Getränke</span></a>
           </li>
+          <li class="nav-item"><a (click)="sendNotifications(pushNotification)"><i class="ft-settings"></i><span class="menu-title">Push Notifications</span></a>
+          </li>
+          <li class="nav-item"><a routerLink="/dashboard/zip-codes"><i class="ft-settings"></i><span class="menu-title">Zip Codes</span></a>
+          </li>
       </ul>
   </div>
 </div>
+
+  
+<ng-template #pushNotification let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Push Notification</h4>
+    <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+          <fieldset>
+            <label for="enter">Title:</label>
+            <input type="text"
+            class="form-control" placeholder="Title" [(ngModel)]="push.title" >
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+          <fieldset>
+            <label for="detail">Message:</label>
+            <input type="text"
+            class="form-control" placeholder="Title" [(ngModel)]="push.message" >
+          </fieldset>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="sendPushNotification()">Send Push Notification</button>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+  </div>
+</ng-template>

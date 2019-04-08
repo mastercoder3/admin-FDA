@@ -38,6 +38,7 @@ import { PastaExtrasComponent } from './pages/dashboard/pasta-extras/pasta-extra
 import { SaladComponent } from './pages/dashboard/salad/salad.component';
 import { DessertComponent } from './pages/dashboard/dessert/dessert.component';
 import { BeveragesComponent } from './pages/dashboard/beverages/beverages.component';
+import { ZipCodeComponent } from './pages/dashboard/zip-code/zip-code.component';
 
 
 const routes = [
@@ -53,7 +54,8 @@ const routes = [
     {path: 'pasta-extras', component: PastaExtrasComponent},
     {path: 'salad', component: SaladComponent},
     {path: 'dessert', component: DessertComponent},
-    {path: 'beverages', component: BeveragesComponent}
+    {path: 'beverages', component: BeveragesComponent},
+    {path: 'zip-codes', component: ZipCodeComponent}
   ]}
 ];
 
@@ -73,7 +75,8 @@ const routes = [
     PastaExtrasComponent,
     SaladComponent,
     DessertComponent,
-    BeveragesComponent
+    BeveragesComponent,
+    ZipCodeComponent
   ],
   imports: [
     BrowserModule,
