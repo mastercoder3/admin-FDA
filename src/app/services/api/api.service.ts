@@ -158,4 +158,22 @@ export class ApiService {
     return this.afs.doc('notifications/push').update(data);
   }
 
+  // Zip codes
+
+  getAllZipCodes(){
+    return this.afs.collection('zips').snapshotChanges();
+  }
+
+  addZipCode(data){
+    return this.afs.collection('zips').add(data);
+  }
+
+  updateZipCode(id,data){
+    return this.afs.doc('zips/'+id).update(data);
+  }
+
+  deleteZipCode(id){
+    return this.afs.doc('zips/'+id).delete();
+  }
+
 }
