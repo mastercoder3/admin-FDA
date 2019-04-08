@@ -3,6 +3,10 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { map } from 'rxjs/operators';
 import { HelperService } from 'src/app/services/helper/helper.service';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireStorage,  AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-pizza',
@@ -18,8 +22,14 @@ export class PizzaComponent implements OnInit {
   pizza;
   openforedit = false;
   data;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<any>;
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  image: string='./../../assets/app-assets/images/blank.png';
 
-  constructor(private api: ApiService, private helper: HelperService, private toastr: ToastrService) { }
+  constructor(private api: ApiService, private helper: HelperService, private toastr: ToastrService,
+    private ngxService: NgxUiLoaderService,  private fireStorage: AngularFireStorage) { }
 
   ngOnInit() {
     this.getData();
@@ -33,7 +43,8 @@ export class PizzaComponent implements OnInit {
       price: [
         0,
         0
-      ]
+      ],
+      imageURL:''
     }
   }
 
@@ -64,7 +75,8 @@ export class PizzaComponent implements OnInit {
       price: [
         0,
         0
-      ]
+      ],
+      imageURL:''
     }
   }
 
@@ -84,7 +96,8 @@ export class PizzaComponent implements OnInit {
             price: [
               0,
               0
-            ]
+            ],
+            imageURL:''
           }
 
         }, err =>{
@@ -121,7 +134,8 @@ export class PizzaComponent implements OnInit {
             price: [
               0,
               0
-            ]
+            ],
+            imageURL:''
           }
 
         }, err =>{
@@ -143,6 +157,24 @@ export class PizzaComponent implements OnInit {
           this.toastr.error(err.message,'Error While Deleting.');
         })
     }
+  }
+
+  upload(event){
+
+    this.ngxService.start();
+    let id = Math.floor(Date.now() / 1000);
+      this.ref = this.fireStorage.ref('Thumbnails/'+id.toString());
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.ref.getDownloadURL().subscribe(url => {
+           this.data.imageURL = url;    
+           this.ngxService.stop();    
+        });
+      })
+    ).subscribe();
+
   }
 
 }

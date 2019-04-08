@@ -122,6 +122,23 @@
                   </fieldset>
               </div>
         </div>
+
+        <div class="row">
+          <div class="col-xl-4 col-lg-6 col-md-12 mb-1" id="imgDiv">
+            <div class="col-xl-4 col-lg-6 col-md-12 mb-1" >
+                <fieldset>
+                  <label for="thumbnail">Thumbnail:</label>
+                  <img src="{{data?.imageURL || image}}"  alt="User Image" id="thumbnail">
+                  <br>
+                </fieldset>
+                <fieldset id="browse" *ngIf="!viewSong">
+                  <label class="custom-file-label" for="upload">Choose an Image</label>
+                  <input type="file" class="custom-file-input" id="upload" (change)="upload($event)" accept=".png,.jpg">
+                </fieldset>
+              </div>
+              <ngx-ui-loader></ngx-ui-loader>
+        </div>
+        </div>
         
         <br>
         <div class="row" *ngIf="!openforedit">
