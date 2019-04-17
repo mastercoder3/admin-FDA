@@ -1,13 +1,13 @@
 <div class="content-header row">
   <div class="content-header-left col-md-6 col-12 mb-1">
-    <h3 class="content-header-title">Zip Codes</h3>
+    <h3 class="content-header-title">Deals</h3>
   </div>
   <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
     <div class="breadcrumb-wrapper col-12">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/dashboard/home">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a>Zip Codes</a>
+        <li class="breadcrumb-item"><a>Deals</a>
         </li>
       </ol>
     </div>
@@ -20,25 +20,24 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Zip Codes</h4>
+            <h4 class="card-title">Deals</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                        <label for="">Search Zip Codes.</label>
+                        <label for="">Search Deals.</label>
                           <input type="text"
-                          class="form-control" [(ngModel)]="food.code" placeholder="Search Zip Codes..."  style="max-width: 300px">
+                          class="form-control" [(ngModel)]="food.title" placeholder="Search Deals..."  style="max-width: 300px">
                       </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                       <fieldset>
-                        <label for="enter">Add a Zip:</label>
-                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addZipCodes(zipcodeModal)">Add</button>
+                        <label for="enter">Create a Deal:</label>
+                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="create(createADeal)">Create</button>
                       </fieldset>
                     </div>
                   </div>
                   <br>
-                  <br>                  <br>
                   <br>
                   <app-spinner *ngIf="showSpinner"></app-spinner>
                   <div class="table-responsive" *ngIf="!showSpinner">
@@ -46,24 +45,25 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Code</th>
-                            <th>Area</th>
-                            <th>Rate</th>
-                            <th>Min Order</th>
+                            <th>Title</th>
+                            <th>Items</th>
+                            <th>Price</th>
+                            <th>Expiry Date</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of zips | filterBy: food; let i = index">
+                          <tr *ngFor="let item of deals | filterBy: food; let i = index">
                             <th scope="row">{{i + 1}}</th>
-                            <td class="small">{{item?.code}}</td>
-                            <td class="small">{{item?.area}}</td>
-                            <td class="small">{{item?.rate}} &euro;</td>
-                            <td class="small">{{item?.minOrder}} &euro;
+                            <td class="small">{{item?.title}}</td>
+                            <td class="small">{{item?.items}}</td>
+                            <td class="small">{{item?.price}} &euro;
                             </td>
+                            <td class="small">{{item?.date.toDate() }}
+                              </td>
                             <td class="small">
-                                <a  (click)="view(zipcodeModal, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
-                                <br>
+                                <!-- <a  (click)="view(createADeal, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
+                                <br> -->
                               
                               <a  (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
                             </td>
@@ -81,9 +81,9 @@
 </div>
 
 
-<ng-template #zipcodeModal let-modal>
+<ng-template #createADeal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add Vorspeisen</h4>
+      <h4 class="modal-title" id="modal-basic-title">Create a Deal</h4>
       <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -94,39 +94,55 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                 <fieldset>
-                  <label for="title">Code:</label>
-                  <input type="number" id="title" [(ngModel)]="data.code"
-                  class="form-control" placeholder="Zip Code" >
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" [(ngModel)]="data.title"
+                  class="form-control" placeholder="Title" >
                 </fieldset>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                   <fieldset>
-                    <label for="title">Area:</label>
-                    <input type="text" id="title" [(ngModel)]="data.area"
-                    class="form-control" placeholder="Zip Area Name" >
+                    <label for="title">Items:</label>
+                    <input type="text" id="title" [(ngModel)]="data.items"
+                    class="form-control" placeholder="Ingredients" >
                   </fieldset>
               </div>
         </div>
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                 <fieldset>
-                  <label for="title">Charges:</label>
-                  <input type="text" id="title" [(ngModel)]="data.rate"
-                  class="form-control" placeholder="Delivery Charges" value="Normal" >
+                  <label for="title">Price:</label>
+                  <input type="number" id="title" [(ngModel)]="data.price"
+                  class="form-control" placeholder="Size" value="Normal" >
                 </fieldset>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                   <fieldset>
-                    <label for="title">Min Order:</label>
-                    <input type="number" id="title" [(ngModel)]="data.minOrder"
-                    class="form-control" placeholder="Min Order" >
+                    <label for="title">Expires On:</label>
+                    <input type="date" id="title" [(ngModel)]="data.date"
+                    class="form-control" placeholder="Price" >
                   </fieldset>
               </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-4 col-lg-6 col-md-12 mb-1" id="imgDiv">
+            <div class="col-xl-4 col-lg-6 col-md-12 mb-1" >
+                <fieldset>
+                  <label for="thumbnail">Thumbnail:</label>
+                  <img src="{{data?.imageURL || image}}"  alt="User Image" id="thumbnail">
+                  <br>
+                </fieldset>
+                <fieldset id="browse" *ngIf="!viewSong">
+                  <label class="custom-file-label" for="upload">Choose an Image</label>
+                  <input type="file" class="custom-file-input" id="upload" (change)="upload($event)" accept=".png,.jpg">
+                </fieldset>
+              </div>
+              <ngx-ui-loader></ngx-ui-loader>
+        </div>
         </div>
         
         <br>
         <div class="row" *ngIf="!openforedit">
-          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToZips()">Add</button>
+          <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToDeals()">Add</button>
         </div>
         <div class="row" *ngIf="openforedit">
             <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="update()">Update</button>

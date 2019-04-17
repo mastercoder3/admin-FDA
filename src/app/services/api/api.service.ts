@@ -176,4 +176,28 @@ export class ApiService {
     return this.afs.doc('zips/'+id).delete();
   }
 
+  // Deals
+
+  getAllDeals(){
+    return this.afs.collection('deals').snapshotChanges();
+  }
+
+  addDeal(deal){
+    return this.afs.collection('deals').add(deal);
+  }
+
+  updateDeal(id,data){
+    return this.afs.doc('deals/'+id).update(data);
+  }
+
+  deleteDeal(id){
+    return this.afs.doc('deals/'+id).delete();
+  }
+
+  // Timings
+
+  getTimings(){
+    return this.afs.doc('timing/daily').valueChanges();
+  }
+
 }

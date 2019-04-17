@@ -39,6 +39,8 @@ import { SaladComponent } from './pages/dashboard/salad/salad.component';
 import { DessertComponent } from './pages/dashboard/dessert/dessert.component';
 import { BeveragesComponent } from './pages/dashboard/beverages/beverages.component';
 import { ZipCodeComponent } from './pages/dashboard/zip-code/zip-code.component';
+import { DealsComponent } from './pages/dashboard/deals/deals.component';
+import { TimmingsComponent } from './pages/dashboard/timmings/timmings.component';
 
 
 const routes = [
@@ -55,7 +57,9 @@ const routes = [
     {path: 'salad', component: SaladComponent},
     {path: 'dessert', component: DessertComponent},
     {path: 'beverages', component: BeveragesComponent},
-    {path: 'zip-codes', component: ZipCodeComponent}
+    {path: 'zip-codes', component: ZipCodeComponent},
+    {path: 'deals', component: DealsComponent},
+    {path: 'timing', component: TimmingsComponent}
   ]}
 ];
 
@@ -76,7 +80,9 @@ const routes = [
     SaladComponent,
     DessertComponent,
     BeveragesComponent,
-    ZipCodeComponent
+    ZipCodeComponent,
+    DealsComponent,
+    TimmingsComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +102,7 @@ const routes = [
     FilterPipeModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, AuthService,{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [ApiService, AuthService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
