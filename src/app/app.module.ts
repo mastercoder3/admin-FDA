@@ -41,6 +41,7 @@ import { BeveragesComponent } from './pages/dashboard/beverages/beverages.compon
 import { ZipCodeComponent } from './pages/dashboard/zip-code/zip-code.component';
 import { DealsComponent } from './pages/dashboard/deals/deals.component';
 import { TimmingsComponent } from './pages/dashboard/timmings/timmings.component';
+import { OrdersComponent } from './pages/dashboard/orders/orders.component';
 
 
 const routes = [
@@ -82,7 +83,8 @@ const routes = [
     BeveragesComponent,
     ZipCodeComponent,
     DealsComponent,
-    TimmingsComponent
+    TimmingsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

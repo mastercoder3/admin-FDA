@@ -20,20 +20,11 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Timings</h4>
+            <h4 class="card-title">Daily Timings</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                      <fieldset>
-                        <label for="enter">Add Special timing:</label>
-                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addSalad(addSalads)">Add</button>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <br><br>
-                  <h5>Daily Timings</h5>
+                
                       <app-spinner *ngIf="showSpinner"></app-spinner>
                       <div class="table-responsive" *ngIf="!showSpinner">
                           <table class="table">
@@ -43,6 +34,7 @@
                                 <th>Day</th>
                                 <th>From</th>
                                 <th>To</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                               </tr>
                             </thead>
@@ -53,8 +45,67 @@
                                 <td class="small">{{item?.from}}</td>
                                 <td class="small">{{item?.to}}
                                 </td>
+                                <td class="small">{{item?.status}}</td>
                                 <td class="small">
                                     <a  (click)="view(updateTimings, item, i)">Edit<i style="color: green;" class="ft-edit"></i></a>
+                                </td>
+          
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="content-body">
+  <section class="basic-elements">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Special Timings</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                      <fieldset>
+                        <label for="enter">Add Special timing:</label>
+                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addNewSpecialTiming(updateTimings)">Add</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <br><br>
+                  <app-spinner *ngIf="showSpinner1"></app-spinner>
+                      <div class="table-responsive" *ngIf="!showSpinner">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of special?.timings; let i = index">
+                                <th scope="row">{{i + 1}}</th>
+                                <td class="small">{{item?.date}}</td>
+                                <td class="small">{{item?.from}}</td>
+                                <td class="small">{{item?.to}}
+                                </td>
+                                <td class="small">{{item?.status}}</td>
+                                <td class="small">
+                                  
+                                  <a  (click)="delete(i)">Delete<i style="color: red" class="ft-trash-2"></i></a>
                                 </td>
           
                               </tr>
@@ -80,11 +131,21 @@
     <div class="modal-body">
       <div class="card-body">
 
-        <div class="row">
+        <div class="row" *ngIf="!openforspecial">
             <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                 <fieldset>
                   <label for="title">Day:</label>
                   <input type="text" id="title" [(ngModel)]="data.day" disabled
+                  class="form-control" placeholder="Day" >
+                </fieldset>
+              </div>
+            
+        </div>
+        <div class="row" *ngIf="openforspecial">
+            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                <fieldset>
+                  <label for="title">Date:</label>
+                  <input type="date" id="title" [(ngModel)]="data.date"
                   class="form-control" placeholder="Day" >
                 </fieldset>
               </div>
@@ -121,9 +182,13 @@
         
         <br>
 
-        <div class="row">
+        <div class="row" *ngIf="!openforspecial">
             <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="update()">Update</button>
           </div>
+
+          <div class="row" *ngIf="openforspecial">
+              <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToNewSpecial()">Add</button>
+            </div>
   
   
       </div>

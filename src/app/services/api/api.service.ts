@@ -196,8 +196,12 @@ export class ApiService {
 
   // Timings
 
-  getTimings(){
-    return this.afs.doc('timing/daily').valueChanges();
+  getTimings(id){
+    return this.afs.doc('timing/'+id).valueChanges();
+  }
+
+  updateTimings(id,data){
+    return this.afs.doc('timing/'+id).update(data);
   }
 
 }
