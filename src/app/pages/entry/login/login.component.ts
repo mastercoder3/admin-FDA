@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
         Validators.required
       ])]
     });
+    if(localStorage.getItem('fid'))
+      this.ngzone.run(() => this.router.navigate(['/dashboard/home']).then(res =>{
+        location.reload();
+      })).then();
   }
 
   get f() { return this.form.controls; }

@@ -47,6 +47,7 @@ import { OrdersComponent } from './pages/dashboard/orders/orders.component';
 
 import {NgxPrintModule} from 'ngx-print';
 import {ENgxPrintModule} from "e-ngx-print";
+import { AuthGaurdService } from './services/auth-gaurd/auth-gaurd.service';
 
 
 const routes = [
@@ -67,7 +68,7 @@ const routes = [
     {path: 'deals', component: DealsComponent},
     {path: 'timing', component: TimmingsComponent},
     {path: 'orders', component: OrdersComponent}
-  ]}
+  ], canActivate: [AuthGaurdService]}
 ];
 
 @NgModule({
@@ -113,7 +114,7 @@ const routes = [
     FilterPipeModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, AuthService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [ApiService, AuthService,AuthGaurdService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
