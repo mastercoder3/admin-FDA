@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(email,password)
       .then(res => {
         localStorage.setItem('fid',res.user.uid);
-        this.ngzone.run(() => this.router.navigate(['/dashboard/home'])).then();
+        this.ngzone.run(() => this.router.navigate(['/dashboard/home']).then(res =>{
+          location.reload();
+        })).then();
       }, err =>{ 
         this.toastr.error(err.message, 'Login Error!');
       })

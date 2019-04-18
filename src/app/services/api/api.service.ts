@@ -204,4 +204,10 @@ export class ApiService {
     return this.afs.doc('timing/'+id).update(data);
   }
 
+  // orders
+
+  getAllOrders(){
+    return this.afs.collection('orders', ref => ref.orderBy('date','desc')).snapshotChanges();
+  }
+
 }

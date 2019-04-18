@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpModule} from '@angular/http';
+
 
 //packages
 import { FilterPipeModule } from 'ngx-filter-pipe';
@@ -43,6 +45,9 @@ import { DealsComponent } from './pages/dashboard/deals/deals.component';
 import { TimmingsComponent } from './pages/dashboard/timmings/timmings.component';
 import { OrdersComponent } from './pages/dashboard/orders/orders.component';
 
+import {NgxPrintModule} from 'ngx-print';
+import {ENgxPrintModule} from "e-ngx-print";
+
 
 const routes = [
   {path: '' , redirectTo: 'login', pathMatch: 'full'},
@@ -60,7 +65,8 @@ const routes = [
     {path: 'beverages', component: BeveragesComponent},
     {path: 'zip-codes', component: ZipCodeComponent},
     {path: 'deals', component: DealsComponent},
-    {path: 'timing', component: TimmingsComponent}
+    {path: 'timing', component: TimmingsComponent},
+    {path: 'orders', component: OrdersComponent}
   ]}
 ];
 
@@ -91,12 +97,15 @@ const routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
+    NgxPrintModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     NgbModalModule,
     NgbModule,
+    ENgxPrintModule,
     NgxUiLoaderModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,

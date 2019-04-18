@@ -1,3 +1,291 @@
-<p>
-  orders works!
-</p>
+<div class="content-header row">
+  <div class="content-header-left col-md-6 col-12 mb-1">
+    <h3 class="content-header-title">Orders</h3>
+  </div>
+  <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
+    <div class="breadcrumb-wrapper col-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard/home">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a>Orders</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="content-body">
+  <section class="basic-elements">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Orders</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                  <label for="">Search Orders.</label>
+                  <input type="text" class="form-control" [(ngModel)]="food.email" placeholder="Enter Email..."
+                    style="max-width: 300px">
+                </div>
+              </div>
+              <br>
+              <br>
+              <app-spinner *ngIf="showSpinner"></app-spinner>
+              <div class="table-responsive" *ngIf="!showSpinner">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Order Type</th>
+                      <th>Bill</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of orders | filterBy: food; let i = index">
+                      <th scope="row">{{i + 1}}</th>
+                      <td class="small">{{item?.name}}</td>
+                      <td class="small">{{item?.email}}</td>
+                      <td class="small">{{item?.orderType}}
+                      </td>
+                      <td class="small">{{item?.total | number : '1.2'}}
+                      </td>
+                      <td class="small">
+                        <a (click)="view(label, item)">Detials<i style="color: green;" class="ft-edit"></i></a>
+                        <br>
+
+                        <a (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<ng-template #label let-modal style="width: 100%;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Invoice Printing</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1"><span>Label</span></p>
+    <div class="card-body">
+      <table style="border-collapse:collapse;margin:10px 0; width:100%;" id="print_div">
+        <tbody>
+          <tr>
+            <td>
+              <table
+                style="border-collapse:collapse;width: 500px; margin: 0 auto; border: 1px dotted #CECECE; background: #F4F3F4;">
+                <tbody>
+                  <tr>
+                    <td>
+                      <table id="site"
+                        style="width:100%;padding: 30px; text-align: center; background-color: #ffffff; color: #000000;">
+                        <tbody>
+
+                          <tr>
+                            <td style="text-align: center;font-size: 160%; font-weight: 600;">La TRAT-TORIA Nürnberg
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+
+                      <table id="ordervars" style="width:100%;margin: 5px 0 30px 0; border-bottom: 1px dotted #cecece;">
+                        <tbody>
+
+                          <tr>
+                            <td colspan="2" style="text-align: center;">{{setDate(data.date)}}</td>
+                          </tr>
+
+                          <!-- <tr><td style="width: 50%; white-space:nowrap; text-align: right; padding:2px;">Bestell ID :</td><td style="padding: 2px; word-break: break-word;;">1000</td></tr> -->
+
+                          <tr>
+                            <td style="width: 50%; white-space:nowrap; text-align: right; padding:2px;">Zu zahlen:</td>
+                            <td style="padding: 2px; word-break: break-word;;">{{data?.total |number : '1.2'}} &euro;
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="width: 50%; white-space:nowrap; text-align: right; padding:2px;">Liefertyp :</td>
+                            <td style="padding: 2px; word-break: break-word;;">{{data?.orderType}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="width: 50%; white-space:nowrap; text-align: right; padding:2px;">Bezahlt durch:
+                            </td>
+                            <td style="padding: 2px; word-break: break-word;;">Barzahlung</td>
+                          </tr>
+
+                          <!-- <tr><td style="width: 50%; white-space:nowrap; text-align: right; padding:2px;">Transaktions ID:</td><td style="padding: 2px; word-break: break-word;;">COD15528260551000</td></tr> -->
+
+                          <tr>
+                            <td colspan="2" style="text-align:center; font-weight:bold; padding:3px">Bitte geben Sie uns
+                              60 Minuten Zeit die Bestellung zu liefern.</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+
+                      <table id="customer" style="width:100%;margin: 20px 0;">
+                        <thead>
+                          <tr>
+                            <th colspan="2" style="">
+                              Kundendaten
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Name :
+                            </td>
+                            <td style="text-align: right;padding: 2px;;"> {{data.name}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">
+                              Postleitzahl :</td>
+                            <td style="text-align: right;padding: 2px;;"> {{data.code}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Email :
+                            </td>
+                            <td style="text-align: right;padding: 2px;;"> {{data.email}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Adresse
+                              :</td>
+                            <td style="text-align: right;padding: 2px;;">{{data.address}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">
+                              Telefonnummer :</td>
+                            <td style="text-align: right;padding: 2px;;"> {{data.phone}}</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Notizen
+                              :</td>
+                            <td style="text-align: right;padding: 2px;;">{{data.notes}}</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+
+                      <table id="order" style="width:100%;margin: 10px 0;">
+                        <thead>
+                          <tr>
+                            <th
+                              style="text-align: left; padding: 2px; white-space: nowrap;;font-weight: bold ;white-space: nowrap; padding:5px 2px; border-bottom:1px solid; border-top: 1px solid;">
+                              Menge
+                            </th>
+                            <th
+                              style="text-align: center; padding:2px;font-weight: bold ;white-space: nowrap; padding:5px 2px; border-bottom:1px solid; border-top: 1px solid;">
+                              Artikel
+                            </th>
+                            <th
+                              style="text-align: right; padding: 2px; white-space: nowrap;;font-weight: bold ;white-space: nowrap; padding:5px 2px; border-bottom:1px solid; border-top: 1px solid;">
+                              Preis
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let details of data?.orderDetails">
+                            <td style="text-align: left; padding: 2px; white-space: nowrap;">
+                              <span>{{details.quantity}}</span>
+                            </td>
+                            <td style="text-align: left; padding:2px;">
+                              <span style="padding-left: 15px;">{{details.itemTitle}}</span> <span>  {{details.size}}</span>
+                              <br>
+                              <div
+                                    style="white-space: initial; margin: 3px 3px 3px 20px; line-height: 130%; font-size:85%;font-size:120%;">
+                                    <span></span><span style="font-style: italic; word-wrap: break-word"
+                                      *ngFor="let ex of details?.extras">{{ex}},</span></div>
+                            </td>
+                            <td style="text-align: right; padding: 2px; white-space: nowrap;">
+                              <span>{{details.price}} &euro;</span>
+                            </td>
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+
+
+                      <table id="summary" style="width:100%;margin: 0 0 10px; border-top: 1px dotted #cecece">
+                        <tbody>
+
+                          <tr>
+                            <td style="text-align: left; padding:2px;">Ihre Artikel</td>
+                            <td style="text-align: right; padding:2px;">{{getTotal() | number : '1.2'}} &euro;</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding:2px;">Rabatt</td>
+                            <td style="text-align: right; padding:2px;">-{{getDiscount(getTotal()) | number : '1.2'}}
+                              &euro;</td>
+                          </tr>
+
+                          <tr>
+                            <td style="text-align: left; padding:2px;">Liefergebühr</td>
+                            <td style="text-align: right; padding:2px;">{{data?.deliveryFee}} &euro;</td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              style="text-align: left; padding:2px;font-weight: 600; padding: 10px 0; border-top: 1px dotted #cecece">
+                              Gesamt</td>
+                            <td
+                              style="text-align: right; padding:2px;font-weight: 600; padding: 10px 0; border-top: 1px dotted #cecece">
+                              {{data?.total | number: '1.2'}} &euro;</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <div class="row">
+        <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" printSectionId="print_div" ngxPrint><i
+            class="fa fa-print"></i>
+          Print</button>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+  </div>
+</ng-template>
