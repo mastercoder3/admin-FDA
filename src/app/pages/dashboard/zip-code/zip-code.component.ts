@@ -18,6 +18,7 @@ export class ZipCodeComponent implements OnInit {
   zips;
   data;
   openforedit = false;
+  pageNumber = 1;
 
   constructor(private api: ApiService, private helper: HelperService, private toastr: ToastrService) { }
 

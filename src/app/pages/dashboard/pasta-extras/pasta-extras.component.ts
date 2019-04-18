@@ -16,7 +16,7 @@ export class PastaExtrasComponent implements OnInit {
   data;
   showSpinner = true;
   openforedit = false;
-
+  pageNumber = 1;
 
   constructor(private api: ApiService, private helper: HelperService, private toastr: ToastrService) { }
 

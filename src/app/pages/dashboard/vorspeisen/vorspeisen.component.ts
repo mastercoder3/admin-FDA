@@ -28,6 +28,7 @@ export class VorspeisenComponent implements OnInit {
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   image: string='./../../assets/app-assets/images/blank.png';
+  pageNumber = 1;
 
   constructor(private api: ApiService, private helper: HelperService,private ngxService: NgxUiLoaderService, 
      private toastr: ToastrService, private fireStorage: AngularFireStorage) { }

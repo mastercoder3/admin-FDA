@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api/api.service';
-import { HelperService } from 'src/app/services/helper/helper.service';
+import { ApiService } from '../../../services/api/api.service';
+import { HelperService } from '../../../services/helper/helper.service';
 import * as moment from 'moment';
 import { Http, RequestOptions,Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs'; 
 
 @Component({
   selector: 'app-orders',
@@ -19,7 +18,7 @@ export class OrdersComponent implements OnInit {
   orders;
   showSpinner = true;
   data;
-
+  pageNumber: number = 1;
   constructor(private api: ApiService, private helper: HelperService, private http: Http) { }
 
   ngOnInit() {
