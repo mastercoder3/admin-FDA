@@ -3,7 +3,7 @@
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class=" navigation-header"><span>Admin</span><i class="ft-minus" ></i>
           </li>
-          <li class="nav-item"><a><i class="ft-user"></i><span class="menu-title">Food Items</span></a>
+          <li class="nav-item"><a><i class="ft-plus-square"></i><span class="menu-title">Food Items</span></a>
             <ul class="menu-content">
                 <li><a class="menu-item"></a>
                     <ul class="menu-content">
@@ -19,25 +19,12 @@
                         </li>
                         <li><a class="menu-item" routerLink="/dashboard/beverages">Getränke</a>
                         </li>
+                        <li><a class="menu-item" routerLink="/dashboard/others">Others</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </li>
-          <!-- <li class="nav-item"><a routerLink="/dashboard/home"><i class="ft-home"></i><span class="menu-title" >Dashboard</span>
-          </a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/vorspeisen"><i class="ft-bell"></i><span class="menu-title">Vorspeisen</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/pizza" ><i class="ft-music" ></i><span class="menu-title">Pizza</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/pasta"><i class="ft-settings"></i><span class="menu-title">Pasta</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/salad"><i class="ft-settings"></i><span class="menu-title">Salate</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/dessert"><i class="ft-settings"></i><span class="menu-title">Dessert</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/beverages"><i class="ft-settings"></i><span class="menu-title">Getränke</span></a>
-          </li> -->
           <li class="nav-item"><a (click)="sendNotifications(pushNotification)"><i class="ft-settings"></i><span class="menu-title">Push Notifications</span></a>
           </li>
           <li class="nav-item"><a routerLink="/dashboard/zip-codes"><i class="ft-settings"></i><span class="menu-title">Zip Codes</span></a>

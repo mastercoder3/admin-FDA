@@ -210,4 +210,43 @@ export class ApiService {
     return this.afs.collection('orders', ref => ref.orderBy('date','desc')).snapshotChanges();
   }
 
+  deleteOrder(id){
+    return this.afs.doc('orders/'+id).delete();
+  }
+
+  // Categories
+
+  getAllCategories(){
+    return this.afs.collection('categories').snapshotChanges();
+  }
+
+  addToCategories(data){
+    return this.afs.collection('categories').add(data);
+  }
+
+  updateCategory(id,data){
+    return this.afs.doc('categories/'+id).update(data);
+  }
+
+  deleteCategory(id){
+    return this.afs.doc('categories/'+id).delete();
+  }
+
+  // Category Items
+
+  getCategoryItems(id){
+    return this.afs.collection('items', ref => ref.where('id','==',id)).snapshotChanges();
+  }
+
+  addToCategoryItems(data){
+    return this.afs.collection('items').add(data);
+  }
+
+  deleteCategoryItem(id){
+    return this.afs.doc('items/'+id).delete();
+  }
+
+  updateCategoryItems(id,data){
+    return this.afs.doc('items/'+id).update(data);
+  }
 }

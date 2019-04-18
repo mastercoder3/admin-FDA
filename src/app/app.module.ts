@@ -48,6 +48,8 @@ import { OrdersComponent } from './pages/dashboard/orders/orders.component';
 import {NgxPrintModule} from 'ngx-print';
 import {ENgxPrintModule} from "e-ngx-print";
 import { AuthGaurdService } from './services/auth-gaurd/auth-gaurd.service';
+import { AddCategoriesComponent } from './pages/dashboard/add-categories/add-categories.component';
+import { CategoryItemsComponent } from './pages/dashboard/category-items/category-items.component';
 
 
 const routes = [
@@ -67,7 +69,9 @@ const routes = [
     {path: 'zip-codes', component: ZipCodeComponent},
     {path: 'deals', component: DealsComponent},
     {path: 'timing', component: TimmingsComponent},
-    {path: 'orders', component: OrdersComponent}
+    {path: 'orders', component: OrdersComponent},
+    {path: 'others', component: AddCategoriesComponent},
+    {path: 'category-items', component: CategoryItemsComponent}
   ], canActivate: [AuthGaurdService]}
 ];
 
@@ -91,7 +95,9 @@ const routes = [
     ZipCodeComponent,
     DealsComponent,
     TimmingsComponent,
-    OrdersComponent
+    OrdersComponent,
+    AddCategoriesComponent,
+    CategoryItemsComponent
   ],
   imports: [
     BrowserModule,
