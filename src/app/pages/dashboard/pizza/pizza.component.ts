@@ -77,7 +77,8 @@ export class PizzaComponent implements OnInit {
         0,
         0
       ],
-      imageURL:''
+      imageURL:'',
+      info:''
     }
   }
 
@@ -98,7 +99,8 @@ export class PizzaComponent implements OnInit {
               0,
               0
             ],
-            imageURL:''
+            imageURL:'',
+            info:''
           }
 
         }, err =>{
@@ -136,7 +138,8 @@ export class PizzaComponent implements OnInit {
               0,
               0
             ],
-            imageURL:''
+            imageURL:'',
+            info:''
           }
 
         }, err =>{

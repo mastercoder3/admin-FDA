@@ -46,7 +46,13 @@ export class TimmingsComponent implements OnInit {
 
   update(){
     if(this.data.from !=='' && this.data.to !==''){
-      console.log(this.data);
+      this.api.updateTimings('daily',this.data)
+        .then(res =>{
+          this.helper.closeModel();
+          this.toastr.success('Timings updated.','Opretation Successful');
+        }, err =>{
+          this.toastr.error(err.message, 'Error!');
+        })
     }
   }
 
@@ -63,7 +69,7 @@ export class TimmingsComponent implements OnInit {
 
   addToNewSpecial(){
     if(this.data.date !== '' &&  this.data.status !== '' ){
-      console.log(this.special)
+      // console.log(this.special)
       this.special.timings.push(this.data);
       this.api.updateTimings('special',this.special)
         .then(res =>{

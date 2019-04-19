@@ -4,6 +4,7 @@ import { HelperService } from '../../../services/helper/helper.service';
 import * as moment from 'moment';
 import { Http, RequestOptions,Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-orders',
@@ -19,7 +20,7 @@ export class OrdersComponent implements OnInit {
   showSpinner = true;
   data;
   pageNumber: number = 1;
-  constructor(private api: ApiService, private helper: HelperService, private http: Http) { }
+  constructor(private api: ApiService, private helper: HelperService, private http: Http, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getData();
@@ -78,6 +79,17 @@ export class OrdersComponent implements OnInit {
   extractData(res){
     let body = res.json();
     return body;
+  }
+
+  delete(item){
+    if(confirm(`Are you sure you want to delete order ${item.name}`)){
+      this.api.deleteOrder(item.did)
+        .then(res =>{
+          this.toastr.success('Order Deleted.','Operation Completed');
+        }, err =>{
+          this.toastr.error(err.message, 'Error!');
+        })
+    }
   }
 
 
