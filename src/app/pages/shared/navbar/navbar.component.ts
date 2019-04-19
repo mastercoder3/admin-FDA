@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api/api.service';
+import * as firebase  from 'firebase';
+import { HelperService } from 'src/app/services/helper/helper.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +15,64 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  password;
+  npassword;
+  user;
+
+  constructor(private router: Router, private api: ApiService,
+    private ngxService: NgxUiLoaderService, private helper: HelperService, private toastr: ToastrService, private auth: AuthService) { }
 
   ngOnInit() {
+    this.api.getAdminData(localStorage.getItem('fid'))
+      .subscribe(res =>{
+        this.user =res;
+      })
   }
 
   
   logout(){
     localStorage.removeItem('fid');
     this.router.navigate(['/login']);
+  }
+
+  resetPassword(content){
+    this.helper.openModel(content);
+    this.password = '';
+    this.npassword = '';
+  }
+
+  update(){
+    if(this.password === this.npassword){
+      this.ngxService.start();
+      this.auth.login(this.user.email, this.user.password)
+      .then(res =>{
+            firebase.auth().onAuthStateChanged( user => {
+            if (user){
+            user.updatePassword(this.password)
+              .then(res => {
+                this.ngxService.stop();  
+                this.helper.closeModel();
+                this.toastr.success('Password Changed');
+                this.user.password = this.password;
+                this.api.updateAdminData(localStorage.getItem('fid'),this.user);
+                        }, err =>{
+                this.toastr.error(err.message,'Error!')
+                this.ngxService.stop();  
+              })
+            } else { 
+              this.ngxService.stop();  
+                console.log(user)
+            }
+          });
+      }, err =>{
+        this.ngxService.stop();  
+        this.toastr.error('Something Went Wrong.','Error.')
+      })
+     
+    }
+    else{
+      this.toastr.error('Password Does not matches.','Password Error.')
+    }
   }
 
 }

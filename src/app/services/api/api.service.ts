@@ -249,4 +249,14 @@ export class ApiService {
   updateCategoryItems(id,data){
     return this.afs.doc('items/'+id).update(data);
   }
+
+  // Admin
+
+  getAdminData(id){
+    return this.afs.doc('root/'+id).valueChanges();
+  }
+
+  updateAdminData(id,data){
+    return this.afs.doc('root/'+id).update(data);
+  }
 }
