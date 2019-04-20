@@ -76,7 +76,7 @@ export class PastaComponent implements OnInit {
   }
 
   addToPasta(){
-    if(this.data.title !== '' && this.data.ingredients !== ''){
+    if(this.data.title !== '' ){
       this.api.addPasta(this.data)
         .then(res =>{
           this.toastr.success('Pasta Added.','Operation Completed Successfully.');
@@ -101,7 +101,7 @@ export class PastaComponent implements OnInit {
   }
 
   updatePasta(){
-    if(this.data.title !== ''  && this.data.ingredients !== ''){
+    if(this.data.title !== ''  ){
       let id = this.data.did;
       delete this.data['did'];
       this.api.updatePasta(id,this.data)

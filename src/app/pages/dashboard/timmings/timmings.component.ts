@@ -42,11 +42,14 @@ export class TimmingsComponent implements OnInit {
     this.data = item;
     this.index = i;
     this.openforspecial = false;
+    // console.log(this.daily);
+
   }
 
   update(){
     if(this.data.from !=='' && this.data.to !==''){
-      this.api.updateTimings('daily',this.data)
+      this.daily.timings[this.index] = this.data;
+      this.api.updateTimings('daily',this.daily)
         .then(res =>{
           this.helper.closeModel();
           this.toastr.success('Timings updated.','Opretation Successful');

@@ -83,7 +83,7 @@ export class PizzaComponent implements OnInit {
   }
 
   addToPizza(){
-    if(this.data.title !== '' && this.data.ingredients !== ''){
+    if(this.data.title !== ''){
       this.api.addPizza(this.data)
         .then(res =>{
           this.toastr.success('Ingredients Added.','Operation Completed Successfully.');
@@ -120,7 +120,7 @@ export class PizzaComponent implements OnInit {
   }
 
   updatePizza(){
-    if(this.data.title !== ''  && this.data.ingredients !== ''){
+    if(this.data.title !== ''){
       let id = this.data.did;
       delete this.data['did'];
       this.api.updatePizza(id,this.data)

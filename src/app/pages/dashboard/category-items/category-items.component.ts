@@ -109,23 +109,25 @@ export class CategoryItemsComponent implements OnInit {
   }
 
   addItemsToDB(){
-    if(this.data.title !== '' && this.data.ingredients !== '' && this.data.imageURL !== ''){
+    if(this.data.title !== '' && this.data.imageURL !== ''){
       this.api.addToCategoryItems(this.data)
       .then(res =>{
         this.toastr.success('Item Added.','Operation Completed Successfully.');
         this.helper.closeModel();
+        this.category.total = this.items.length;
+        this.updateCategory();
       }, err =>{
         this.helper.closeModel();
         this.toastr.error(err.message, 'Error!');
       });
     }
     else{
-      this.toastr.warning('Please Provide all fields', 'Warning! cannot proceed.');
+      this.toastr.warning('Please Provide all fields. (Must Provide an Image)', 'Warning! cannot proceed.');
     }
   }
 
   update(){
-    if(this.data.title !== '' && this.data.ingredients !== '' && this.data.imageURL !== ''){
+    if(this.data.title !== '' && this.data.imageURL !== ''){
       let id = this.data.did;
       delete this.data['did'];
       this.api.updateCategoryItems(id,this.data)
@@ -138,7 +140,7 @@ export class CategoryItemsComponent implements OnInit {
       });
     }
     else{
-      this.toastr.warning('Please Provide all fields', 'Warning! cannot proceed.');
+      this.toastr.warning('Please Provide all fields. (Must provide an Image)', 'Warning! cannot proceed.');
 
     }
   }
@@ -158,6 +160,17 @@ export class CategoryItemsComponent implements OnInit {
           this.toastr.error(err.message,'Error While Deleting.');
         })
     }
+  }
+
+  updateCategory(){
+    let id = this.category.did;
+    delete this.category['did']
+    this.api.updateCategory(id,this.category)
+    .then(res =>{
+      this.category.did = id;
+    }, err =>{
+      this.toastr.error('Something went wrong, with the category.','Error!')
+    })
   }
 
 

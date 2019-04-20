@@ -119,7 +119,7 @@ export class BeveragesComponent implements OnInit {
     if(confirm(`Are you sure you want to delete ${item.title}`)){
       this.api.deleteVorspeisen(item.did)
         .then(res => {
-          this.toastr.success('Pizza deleted.','Operation Completed');
+          this.toastr.success('Beverage deleted.','Operation Completed');
         }, err =>{
           this.toastr.error(err.message,'Error While Deleting.');
         })

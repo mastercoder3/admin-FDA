@@ -164,6 +164,10 @@ export class ApiService {
     return this.afs.collection('zips').snapshotChanges();
   }
 
+  getZipById(id){
+    return this.afs.doc('zips/'+id).valueChanges();
+  }
+
   addZipCode(data){
     return this.afs.collection('zips').add(data);
   }
@@ -259,4 +263,7 @@ export class ApiService {
   updateAdminData(id,data){
     return this.afs.doc('root/'+id).update(data);
   }
+
+  // get Discount
+
 }

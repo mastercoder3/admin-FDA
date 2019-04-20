@@ -19,6 +19,7 @@ export class ZipCodeComponent implements OnInit {
   data;
   openforedit = false;
   pageNumber = 1;
+  discount;
 
   constructor(private api: ApiService, private helper: HelperService, private toastr: ToastrService) { }
 
@@ -43,6 +44,11 @@ export class ZipCodeComponent implements OnInit {
         .subscribe(res =>{
           this.zips = res;
           this.showSpinner =  false;
+        });
+    this.api.getZipById('discount')
+        .subscribe(res =>{
+          this.discount = res;
+          // console.log(res);
         })
   }
 
@@ -122,6 +128,25 @@ export class ZipCodeComponent implements OnInit {
         }, err =>{
           this.toastr.error(err.message,'Error While Deleting.');
         })
+    }
+  }
+
+  setDiscount(content){
+    this.helper.openModel(content);
+  }
+
+  updateDiscount(){
+    if(this.discount.amount >= 0 && this.discount.amount < 100){
+      this.api.updateZipCode('discount',this.discount)
+        .then(res =>{
+          this.helper.closeModel();
+          this.toastr.success('Discount Price Updated.','Operation Successfull');
+        }, err=>{
+          this.toastr.error(err.message,'Error!');
+        })
+    }
+    else{
+      this.toastr.warning('Please Enter a discount percentage from 1 ~ 100.','Cannot proceed.');
     }
   }
 

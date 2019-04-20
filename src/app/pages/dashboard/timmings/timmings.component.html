@@ -34,6 +34,8 @@
                       <th>Tag</th>
                       <th>Von</th>
                       <th>Zu</th>
+                      <th>Brechen Von</th>
+                      <th>Brechen Zu</th>
                       <th>Status</th>
                       <th>Aktionen</th>
                     </tr>
@@ -44,6 +46,10 @@
                       <td class="small">{{item?.day}}</td>
                       <td class="small">{{item?.from}}</td>
                       <td class="small">{{item?.to}}
+                      </td>
+                      <td class="small">{{item?.breakFrom}}
+                      </td>
+                      <td class="small">{{item?.breakTo}}
                       </td>
                       <td class="small">{{item?.status}}</td>
                       <td class="small">
@@ -164,6 +170,21 @@
             <input type="time" id="title" [(ngModel)]="data.to" class="form-control" placeholder="Zu">
           </fieldset>
         </div>
+      </div>
+      <div class="row" *ngIf="!openforspecial">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="From">Brechen Von:</label>
+            <input type="time" id="title" [(ngModel)]="data.breakFrom" class="form-control" placeholder="Von">
+          </fieldset>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="to">Brechen Zu:</label>
+            <input type="time" id="title" [(ngModel)]="data.breakTo" class="form-control" placeholder="Zu">
+          </fieldset>
+        </div>
+
       </div>
 
       <div class="row">

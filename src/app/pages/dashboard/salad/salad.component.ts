@@ -61,7 +61,7 @@ export class SaladComponent implements OnInit {
   }
 
   addToSalad(){
-    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 && this.data.ingredients !== ''){
+    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 ){
       this.api.addSalads(this.data)
         .then(res =>{
           this.toastr.success('Salad Added.','Operation Completed Successfully.');
@@ -82,12 +82,12 @@ export class SaladComponent implements OnInit {
   }
 
   update(){
-    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 && this.data.ingredients !== ''){
+    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 ){
       let id = this.data.did;
       delete this.data['did'];
-      this.api.updateExtras(id,this.data)
+      this.api.updateSalads(id,this.data)
         .then(res =>{
-          this.toastr.success('Pasta Updated.','Operation Completed Successfully.');
+          this.toastr.success('Salad Updated.','Operation Completed Successfully.');
           this.helper.closeModel();
           this.data.title = '';
           this.data.price = 0;
@@ -115,7 +115,7 @@ export class SaladComponent implements OnInit {
     if(confirm(`Are you sure you want to delete ${item.title}`)){
       this.api.deletePasta(item.did)
         .then(res => {
-          this.toastr.success('Pasta deleted.','Operation Completed');
+          this.toastr.success('Salad deleted.','Operation Completed');
         }, err =>{
           this.toastr.error(err.message,'Error While Deleting.');
         })

@@ -47,10 +47,16 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <<th>#</th>
+                      <th>#</th>
                       <th> Titel </th>
                       <th> Zutaten </th>
+                      <th>
+                        Information
+                      </th>
                       <th> Preis </th>
+                      <th>
+                        Größe
+                      </th>
                       <th> Aktionen </th>
                     </tr>
                   </thead>
@@ -60,6 +66,9 @@
                       <th scope="row">{{i + 1}}</th>
                       <td class="small">{{item?.title}}</td>
                       <td class="small">{{item?.ingredients}}</td>
+                      <td class="small">
+                        <p>{{item?.info}}</p>
+                      </td>
                       <td class="small">{{item?.price}}
                       </td>
                       <td class="small">{{item?.size}}</td>
@@ -138,6 +147,18 @@
               <input type="number" id="title" [(ngModel)]="data.price[i]" class="form-control" placeholder="preis">
             </fieldset>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="info">
+              <!-- Size -->
+              Information:
+            </label>
+            <input type="text" id="info" [(ngModel)]="data.info" class="form-control" placeholder="Information eingeben"
+              value="Normal">
+          </fieldset>
         </div>
       </div>
       <div class="row">

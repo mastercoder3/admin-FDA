@@ -61,7 +61,7 @@ export class DessertComponent implements OnInit {
   }
 
   addToDessert(){
-    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 && this.data.ingredients !== ''){
+    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0){
       this.api.addDessert(this.data)
         .then(res =>{
           this.toastr.success('Dessert Added.','Operation Completed Successfully.');
@@ -83,7 +83,7 @@ export class DessertComponent implements OnInit {
   }
 
   update(){
-    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 && this.data.ingredients !== ''){
+    if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0){
       let id = this.data.did;
       delete this.data['did'];
       this.api.updateDessert(id,this.data)
@@ -116,7 +116,7 @@ export class DessertComponent implements OnInit {
     if(confirm(`Are you sure you want to delete ${item.title}`)){
       this.api.deleteVorspeisen(item.did)
         .then(res => {
-          this.toastr.success('Pizza deleted.','Operation Completed');
+          this.toastr.success('Dessert deleted.','Operation Completed');
         }, err =>{
           this.toastr.error(err.message,'Error While Deleting.');
         })

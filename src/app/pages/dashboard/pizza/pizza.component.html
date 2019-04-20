@@ -60,6 +60,12 @@
                         Zutaten
                       </th>
                       <th>
+                        Information
+                      </th>
+                      <th>
+                        Größe
+                      </th>
+                      <th>
                         <!-- Price -->
                         Preis
                       </th>
@@ -75,7 +81,7 @@
                       <th scope="row">{{i + 1}}</th>
                       <td class="small">{{item?.title}}</td>
                       <td class="small">{{item?.ingredients}}</td>
-                      <td class="small">{{item?.price}}</td>
+                      <td class="small">{{item?.info}}</td>
                       <td class="small">
                         <ul style="list-style: none;">
                           <li *ngFor="let si of item.size" style="margin-left: -35px;">{{si}}</li>

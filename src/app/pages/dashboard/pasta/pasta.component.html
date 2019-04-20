@@ -55,6 +55,9 @@
                           Zutaten
                         </th>
                         <th>
+                          Information
+                        </th>
+                        <th>
                           Preis
                         </th>
                         <th>
@@ -68,6 +71,7 @@
                       <th scope="row">{{i + 1}}</th>
                       <td class="small">{{item?.title}}</td>
                       <td class="small">{{item?.ingredients}}</td>
+                      <td class="smal"><p>{{item?.info}}</p></td>
                       <td class="small">
                         {{item.price}}
                       </td>
@@ -134,7 +138,18 @@
           </fieldset>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="info">
+              <!-- Size -->
+              Information:
+            </label>
+            <input type="text" id="info" [(ngModel)]="data.info" class="form-control" placeholder="Information eingeben"
+              value="Normal">
+          </fieldset>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xl-4 col-lg-6 col-md-12 mb-1" id="imgDiv">
           <div class="col-xl-4 col-lg-6 col-md-12 mb-1">

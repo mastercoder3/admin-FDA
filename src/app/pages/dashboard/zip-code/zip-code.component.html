@@ -9,6 +9,8 @@
         </li>
         <li class="breadcrumb-item"><a>Zip Codes</a>
         </li>
+        <li class="breadcrumb-item"><a style="color: #7BBFC2; cursor: pointer;" (click)="setDiscount(discountModal)">Rabatt einstellen</a>
+        </li>
       </ol>
     </div>
   </div>
@@ -132,6 +134,39 @@
       </div>
       <div class="row" *ngIf="openforedit">
         <button type="button" class="btn btn-secondary btn-min-width ml-2 mb-1" (click)="update()">Aktualisieren</button>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">schließen</button>
+  </div>
+</ng-template>
+
+
+<ng-template #discountModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Rabatt ändern</h4>
+    <button type="button" class="close" aria-label="Close" style="outline: none;"
+      (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="zip code">Rabatt Prozent:</label>
+            <input type="number" id="title" [(ngModel)]="discount.amount" class="form-control" placeholder="Geben Sie den Rabatt in Prozent ein">
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="row">
+        <button type="button" class="btn btn-secondary btn-min-width ml-2 mb-1" (click)="updateDiscount()">Aktualisieren</button>
       </div>
 
 
