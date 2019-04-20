@@ -1,49 +1,73 @@
 <div class="main-menu menu-fixed menu-shadow menu-dark menu-accordion" data-scroll-to-active="true" id="sidebar">
   <div class="main-menu-content">
-      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" navigation-header"><span>Admin</span><i class="ft-minus" ></i>
-          </li>
-          <li class="nav-item"><a><i class="ft-plus-square"></i><span class="menu-title">Food Items</span></a>
+    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+      <li class=" navigation-header">
+        <a routerLink='/dashboard'> dashboard 
+          <!-- <i class="ft-minus"></i>  -->
+        </a> 
+      </li>
+      <li class="nav-item"><a><i class="ft-plus-square"></i>
+          <span class="menu-title">
+            <!-- Food Items -->
+            Lebensmittel
+          </span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item"></a>
             <ul class="menu-content">
-                <li><a class="menu-item"></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" routerLink="/dashboard/vorspeisen">Vorspeisen</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/pizza">Pizza</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/pasta">Pasta</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/salad">Salate</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/dessert">Dessert</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/beverages">Getränke</a>
-                        </li>
-                        <li><a class="menu-item" routerLink="/dashboard/others">Others</a>
-                        </li>
-                    </ul>
-                </li>
+              <li>
+                <a class="menu-item" routerLink="/dashboard/vorspeisen">Vorspeisen</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/pizza">Pizza</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/pasta">Pasta</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/salad">Salad</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/dessert">Dessert</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/beverages">Getränke</a>
+              </li>
+              <li><a class="menu-item" routerLink="/dashboard/others">Others</a>
+              </li>
             </ul>
-        </li>
-          <li class="nav-item"><a (click)="sendNotifications(pushNotification)"><i class="ft-settings"></i><span class="menu-title">Push Notifications</span></a>
           </li>
-          <li class="nav-item"><a routerLink="/dashboard/zip-codes"><i class="ft-settings"></i><span class="menu-title">Zip Codes</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/deals"><i class="ft-settings"></i><span class="menu-title">Deals</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/timing"><i class="ft-settings"></i><span class="menu-title">Timings</span></a>
-          </li>
-          <li class="nav-item"><a routerLink="/dashboard/orders"><i class="ft-settings"></i><span class="menu-title">Orders</span></a>
-          </li>
-      </ul>
+        </ul>
+      </li>
+      <li class="nav-item"><a (click)="sendNotifications(pushNotification)">
+          <i class="ft-settings"></i>
+          <span class="menu-title">
+            <!-- Push Notifications -->
+            Sende Nachrichten
+          </span></a>
+      </li>
+      <li class="nav-item"><a routerLink="/dashboard/zip-codes">
+          <i class="ft-settings"></i>
+          <span class="menu-title">
+            Zip Codes
+          </span></a>
+      </li>
+      <li class="nav-item"><a routerLink="/dashboard/deals"><i class="ft-settings"></i><span
+            class="menu-title">Deals</span></a>
+      </li>
+      <li class="nav-item"><a routerLink="/dashboard/timing"><i class="ft-settings"></i> <span
+            class="menu-title">Timings</span></a>
+      </li>
+      <li class="nav-item"><a routerLink="/dashboard/orders"><i class="ft-settings"></i><span
+            class="menu-title">Orders</span></a>
+      </li>
+    </ul>
   </div>
 </div>
 
-  
+
 <ng-template #pushNotification let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Push Notification</h4>
-    <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
+    <h4 class="modal-title" id="modal-basic-title">
+      <!-- Push Notification -->
+      Benachrichtigungen Senden
+    </h4>
+    <button type="button" class="close" aria-label="Close" style="outline: none;"
+      (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -52,31 +76,43 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
           <fieldset>
-            <label for="enter">Title:</label>
-            <input type="text"
-            class="form-control" placeholder="Title" [(ngModel)]="push.title" >
+            <label for="enter">
+              <!-- Title: -->
+              Titel
+            </label>
+            <input type="text" class="form-control" placeholder="Titel" [(ngModel)]="push.title">
           </fieldset>
         </div>
       </div>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
           <fieldset>
-            <label for="detail">Message:</label>
-            <input type="text"
-            class="form-control" placeholder="Title" [(ngModel)]="push.message" >
+            <label for="detail">
+              <!-- Message: -->
+              Hinweis
+            </label>
+            <!-- <input type="text" class="form-control" placeholder="Title" [(ngModel)]="push.message"> -->
+
+            <textarea class="form-control" rows="10" placeholder="Geben Sie hier Ihre Nachrichten ein" [(ngModel)]="push.message"></textarea>
           </fieldset>
         </div>
       </div>
 
       <br>
       <div class="row">
-        <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="sendPushNotification()">Send Push Notification</button>
+        <button type="button" class="btn btn-primary btn-min-width ml-2 mb-1" (click)="sendPushNotification()">
+          <!-- Send Push Notification -->
+          Sende Nachrichten
+        </button>
       </div>
 
 
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+      <!-- close -->
+      schließen
+    </button>
   </div>
 </ng-template>

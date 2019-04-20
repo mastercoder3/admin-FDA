@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SidebarComponent implements OnInit {
 
-  push={
+  push = {
     title: '',
     message: ''
   };

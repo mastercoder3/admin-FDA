@@ -1,6 +1,6 @@
 <div class="content-header row">
   <div class="content-header-left col-md-6 col-12 mb-1">
-    <h3 class="content-header-title">Timings</h3>
+    <h3 class="content-header-title">Zeitliche Koordination</h3>
   </div>
   <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
     <div class="breadcrumb-wrapper col-12">
@@ -20,40 +20,40 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Daily Timings</h4>
+            <h4 class="card-title">tägliche zeitkoordination:</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
-                
-                      <app-spinner *ngIf="showSpinner"></app-spinner>
-                      <div class="table-responsive" *ngIf="!showSpinner">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Day</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let item of daily?.timings; let i = index">
-                                <th scope="row">{{i + 1}}</th>
-                                <td class="small">{{item?.day}}</td>
-                                <td class="small">{{item?.from}}</td>
-                                <td class="small">{{item?.to}}
-                                </td>
-                                <td class="small">{{item?.status}}</td>
-                                <td class="small">
-                                    <a  (click)="view(updateTimings, item, i)">Edit<i style="color: green;" class="ft-edit"></i></a>
-                                </td>
-          
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+
+              <app-spinner *ngIf="showSpinner"></app-spinner>
+              <div class="table-responsive" *ngIf="!showSpinner">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tag</th>
+                      <th>Von</th>
+                      <th>Zu</th>
+                      <th>Status</th>
+                      <th>Aktionen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of daily?.timings; let i = index">
+                      <th scope="row">{{i + 1}}</th>
+                      <td class="small">{{item?.day}}</td>
+                      <td class="small">{{item?.from}}</td>
+                      <td class="small">{{item?.to}}
+                      </td>
+                      <td class="small">{{item?.status}}</td>
+                      <td class="small">
+                        <a (click)="view(updateTimings, item, i)">ändern<i style="color: green;" class="ft-edit"></i></a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -69,49 +69,50 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Special Timings</h4>
+            <h4 class="card-title">Besondere Zeit</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                      <fieldset>
-                        <label for="enter">Add Special timing:</label>
-                        <button style="margin-top: 5px;" class="btn btn-primary btn-block" (click)="addNewSpecialTiming(updateTimings)">Add</button>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <br><br>
-                  <app-spinner *ngIf="showSpinner1"></app-spinner>
-                      <div class="table-responsive" *ngIf="!showSpinner">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let item of special?.timings; let i = index">
-                                <th scope="row">{{i + 1}}</th>
-                                <td class="small">{{item?.date}}</td>
-                                <td class="small">{{item?.from}}</td>
-                                <td class="small">{{item?.to}}
-                                </td>
-                                <td class="small">{{item?.status}}</td>
-                                <td class="small">
-                                  
-                                  <a  (click)="delete(i)">Delete<i style="color: red" class="ft-trash-2"></i></a>
-                                </td>
-          
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                  <fieldset>
+                    <label for="enter">Sonderzeit hinzufügen:</label>
+                    <button style="margin-top: 5px;" class="btn btn-primary btn-block"
+                      (click)="addNewSpecialTiming(updateTimings)">Hinzufügen</button>
+                  </fieldset>
+                </div>
+              </div>
+              <br><br>
+              <app-spinner *ngIf="showSpinner1"></app-spinner>
+              <div class="table-responsive" *ngIf="!showSpinner">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Datum</th>
+                      <th>Von</th>
+                      <th>Zu</th>
+                      <th>Status</th>
+                      <th>Aktionen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of special?.timings; let i = index">
+                      <th scope="row">{{i + 1}}</th>
+                      <td class="small">{{item?.date}}</td>
+                      <td class="small">{{item?.from}}</td>
+                      <td class="small">{{item?.to}}
+                      </td>
+                      <td class="small">{{item?.status}}</td>
+                      <td class="small">
+
+                        <a (click)="delete(i)">Klar<i style="color: red" class="ft-trash-2"></i></a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -120,80 +121,77 @@
   </section>
 </div>
 
-   
+
 <ng-template #updateTimings let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add Salad</h4>
-      <button type="button" class="close" aria-label="Close" style="outline: none;" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="card-body">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Salat hinzufügen</h4>
+    <button type="button" class="close" aria-label="Close" style="outline: none;"
+      (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
 
-        <div class="row" *ngIf="!openforspecial">
-            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                <fieldset>
-                  <label for="title">Day:</label>
-                  <input type="text" id="title" [(ngModel)]="data.day" disabled
-                  class="form-control" placeholder="Day" >
-                </fieldset>
-              </div>
-            
-        </div>
-        <div class="row" *ngIf="openforspecial">
-            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                <fieldset>
-                  <label for="title">Date:</label>
-                  <input type="date" id="title" [(ngModel)]="data.date"
-                  class="form-control" placeholder="Day" >
-                </fieldset>
-              </div>
-            
-        </div>
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                <fieldset>
-                  <label for="title">From:</label>
-                  <input type="time" id="title" [(ngModel)]="data.from"
-                  class="form-control" placeholder="From" >
-                </fieldset>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                <fieldset>
-                  <label for="title">To:</label>
-                  <input type="time" id="title" [(ngModel)]="data.to"
-                  class="form-control" placeholder="To" >
-                </fieldset>
-            </div>
+      <div class="row" *ngIf="!openforspecial">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="Day">Tag:</label>
+            <input type="text" id="title" [(ngModel)]="data.day" disabled class="form-control" placeholder="Tag">
+          </fieldset>
         </div>
 
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
-                <fieldset>
-                  <label for="title">Status:</label>
-                 <select [(ngModel)]="data.status" class="form-control">
-                   <option value="open">Open</option>
-                   <option value="close">Close</option>
-                 </select>
-                </fieldset>
-            </div>
-        </div>
-        
-        <br>
-
-        <div class="row" *ngIf="!openforspecial">
-            <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="update()">Update</button>
-          </div>
-
-          <div class="row" *ngIf="openforspecial">
-              <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToNewSpecial()">Add</button>
-            </div>
-  
-  
       </div>
+      <div class="row" *ngIf="openforspecial">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="Date">Datum:</label>
+            <input type="date" id="title" [(ngModel)]="data.date" class="form-control" placeholder="Datum">
+          </fieldset>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="From">Von:</label>
+            <input type="time" id="title" [(ngModel)]="data.from" class="form-control" placeholder="Von">
+          </fieldset>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="to">Zu:</label>
+            <input type="time" id="title" [(ngModel)]="data.to" class="form-control" placeholder="Zu">
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+          <fieldset>
+            <label for="status">Status:</label>
+            <select [(ngModel)]="data.status" class="form-control">
+              <option value="open">öffnen</option>
+              <option value="close">schließen</option>
+            </select>
+          </fieldset>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row" *ngIf="!openforspecial">
+        <button type="button" class="btn btn-secondary btn-min-width ml-2 mb-1" (click)="update()">Aktualisieren</button>
+      </div>
+
+      <div class="row" *ngIf="openforspecial">
+        <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" (click)="addToNewSpecial()">Hinzufügen</button>
+      </div>
+
+
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
-    </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">schließen</button>
+  </div>
+</ng-template>

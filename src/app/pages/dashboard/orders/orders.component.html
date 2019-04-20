@@ -1,6 +1,6 @@
 <div class="content-header row">
   <div class="content-header-left col-md-6 col-12 mb-1">
-    <h3 class="content-header-title">Orders</h3>
+    <h3 class="content-header-title">Aufträge Panel</h3>
   </div>
   <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
     <div class="breadcrumb-wrapper col-12">
@@ -20,13 +20,13 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Orders</h4>
+            <h4 class="card-title">Aufträge</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
               <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                  <label for="">Search Orders.</label>
+                  <label for="">Aufträge durchsuchen:</label>
                   <input type="text" class="form-control" [(ngModel)]="food.email" placeholder="Enter Email..."
                     style="max-width: 300px">
                 </div>
@@ -41,14 +41,15 @@
                       <th>#</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Order Type</th>
-                      <th>Bill</th>
+                      <th>Auftragsart</th>
+                      <th>Rechnung</th>
                       <th>Bewirtungsbeleg</th>
-                      <th>Actions</th>
+                      <th>Aktionen</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of orders | filterBy: food | paginate: { itemsPerPage: 10, currentPage: pageNumber }; let i = index">
+                    <tr
+                      *ngFor="let item of orders | filterBy: food | paginate: { itemsPerPage: 10, currentPage: pageNumber }; let i = index">
                       <th scope="row">{{i + 1}}</th>
                       <td class="small">{{item?.name}}</td>
                       <td class="small">{{item?.email}}</td>
@@ -58,21 +59,17 @@
                       </td>
                       <td class="small">{{item?.voucher}}</td>
                       <td class="small">
-                        <a (click)="view(label, item)">Detials<i style="color: green;" class="ft-edit"></i></a>
+                        <a (click)="view(label, item)">Einzelheiten<i style="color: green;" class="ft-edit"></i></a>
                         <br>
 
-                        <a (click)="delete(item)">Delete<i style="color: red" class="ft-trash-2"></i></a>
+                        <a (click)="delete(item)">Klar<i style="color: red" class="ft-trash-2"></i></a>
                       </td>
 
                     </tr>
                   </tbody>
                 </table>
-                <pagination-controls (pageChange)="pageNumber = $event" previousLabel="Previous"
-                        nextLabel="Next"
-                        responsive="true"
-                        autoHide="true"
-                        directionLinks="false"
-                        ></pagination-controls>
+                <pagination-controls (pageChange)="pageNumber = $event" previousLabel="Previous" nextLabel="Next"
+                  responsive="true" autoHide="true" directionLinks="false"></pagination-controls>
               </div>
             </div>
           </div>
@@ -85,7 +82,7 @@
 
 <ng-template #label let-modal style="width: 100%;">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Invoice Printing</h4>
+    <h4 class="modal-title" id="modal-basic-title">Rechnungsdruck</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -155,7 +152,7 @@
                       <table id="customer" style="width:100%;margin: 20px 0;">
                         <thead>
                           <tr>
-                            <th colspan="2" style="">
+                            <th colspan="2">
                               Kundendaten
                             </th>
                           </tr>
@@ -164,7 +161,7 @@
                         <tbody>
 
                           <tr>
-                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Name :
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Name:
                             </td>
                             <td style="text-align: right;padding: 2px;;"> {{data.name}}</td>
                           </tr>
@@ -182,8 +179,8 @@
                           </tr>
 
                           <tr>
-                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Adresse
-                              :</td>
+                            <td style="text-align: left; padding: 2px; white-space:nowrap; vertical-align:top;">Adresse:
+                            </td>
                             <td style="text-align: right;padding: 2px;;">{{data.address}}</td>
                           </tr>
 
@@ -226,18 +223,19 @@
                               <span>{{details.quantity}}</span>
                             </td>
                             <td style="text-align: left; padding:2px;">
-                              <span style="padding-left: 15px;">{{details.itemTitle}}</span> <span>  {{details.size}}</span>
+                              <span style="padding-left: 15px;">{{details.itemTitle}}</span> <span>
+                                {{details.size}}</span>
                               <br>
                               <div
-                                    style="white-space: initial; margin: 3px 3px 3px 20px; line-height: 130%; font-size:85%;font-size:120%;">
-                                    <span></span><span style="font-style: italic; word-wrap: break-word"
-                                      *ngFor="let ex of details?.extras">{{ex}},</span></div>
+                                style="white-space: initial; margin: 3px 3px 3px 20px; line-height: 130%; font-size:85%;font-size:120%;">
+                                <span></span><span style="font-style: italic; word-wrap: break-word"
+                                  *ngFor="let ex of details?.extras">{{ex}},</span></div>
                             </td>
                             <td style="text-align: right; padding: 2px; white-space: nowrap;">
                               <span>{{details.price}} &euro;</span>
                             </td>
                           </tr>
-                         
+
                         </tbody>
                       </table>
 
@@ -285,15 +283,14 @@
       </table>
       <br>
       <div class="row">
-        <button type="button" class="btn btn-secondary btn-min-width mr-1 mb-1" printSectionId="print_div" ngxPrint><i
-            class="fa fa-print"></i>
-          Print</button>
+        <button type="button" class="btn btn-secondary btn-min-width ml-2 mb-1" printSectionId="print_div" ngxPrint>
+          <i class="fa fa-print"></i> Drucken</button>
       </div>
 
 
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Schließen</button>
   </div>
 </ng-template>
