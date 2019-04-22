@@ -42,9 +42,9 @@ export class OrdersComponent implements OnInit {
   view(content,item){
     this.helper.openModelLg(content);
     this.data = item;
-    // this.getCountries().subscribe(res =>{
-    //   console.log(res)
-    // })
+    this.getCountries().subscribe(res =>{
+      console.log(res)
+    })
   }
 
   setDate(date){

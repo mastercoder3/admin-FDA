@@ -109,7 +109,7 @@ export class CategoryItemsComponent implements OnInit {
   }
 
   addItemsToDB(){
-    if(this.data.title !== '' && this.data.imageURL !== ''){
+    if(this.data.title !== ''){
       this.api.addToCategoryItems(this.data)
       .then(res =>{
         this.toastr.success('Item Added.','Operation Completed Successfully.');
@@ -127,7 +127,7 @@ export class CategoryItemsComponent implements OnInit {
   }
 
   update(){
-    if(this.data.title !== '' && this.data.imageURL !== ''){
+    if(this.data.title !== ''){
       let id = this.data.did;
       delete this.data['did'];
       this.api.updateCategoryItems(id,this.data)
