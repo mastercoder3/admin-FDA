@@ -59,13 +59,13 @@ export class ZipCodeComponent implements OnInit {
 
   addToZips(){
     if(this.data.code > 0 && this.data.area !== '' && this.data.rate > 0 && this.data.minOrder > 0){
-      let x: Array<any>;
-      x = this.zips.filter(data => data.code === this.data.code)
-      if(x.length > 0){
-        this.toastr.warning('Zip Code Already Added.','Cannot Proceed');
-        return;
-      }
-      else{
+      // let x: Array<any>;
+      // x = this.zips.filter(data => data.code === this.data.code)
+      // if(x.length > 0){
+      //   this.toastr.warning('Zip Code Already Added.','Cannot Proceed');
+      //   return;
+      // }
+      // else{
           this.api.addZipCode(this.data)
         .then(res =>{
           this.toastr.success('Zip Code Added Added.','Operation Completed Successfully.');
@@ -81,7 +81,7 @@ export class ZipCodeComponent implements OnInit {
           this.helper.closeModel();
           this.toastr.error(err.message, 'Error!');
         });
-      }
+      // }
     
     }
     else{
