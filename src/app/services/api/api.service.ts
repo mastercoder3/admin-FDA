@@ -161,7 +161,7 @@ export class ApiService {
   // Zip codes
 
   getAllZipCodes(){
-    return this.afs.collection('zips').snapshotChanges();
+    return this.afs.collection('zips', ref => ref.where('code','>',0).orderBy('code','asc')).snapshotChanges();
   }
 
   getZipById(id){

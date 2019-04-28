@@ -25,12 +25,12 @@ export class ZipCodeComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    this.data = {
-      code: 0,
-      area: '',
-      rate: 0,
-      minOrder: 0
-    }
+    // this.data = {
+    //   code: 0,
+    //   area: '',
+    //   rate: 0,
+    //   minOrder: 0
+    // }
   }
 
   getData(){
@@ -40,21 +40,27 @@ export class ZipCodeComponent implements OnInit {
         const did = a.payload.doc.id;
         return {did, ...data};
       })))
-
         .subscribe(res =>{
           this.zips = res;
           this.showSpinner =  false;
         });
-    this.api.getZipById('discount')
+        this.api.getZipById('discount')
         .subscribe(res =>{
           this.discount = res;
           // console.log(res);
         })
   }
 
+
   addZipCodes(content){
     this.helper.openModelLg(content);
     this.openforedit = false;
+    this.data = {
+      code: 0,
+      area: '',
+      rate: 0,
+      minOrder: 0
+    }
   }
 
   addToZips(){
@@ -114,17 +120,17 @@ export class ZipCodeComponent implements OnInit {
     }
   }
 
-  view(content,data) {
-    this.data = data;
+  view(content,item) {
+    this.data = item;
     this.helper.openModelLg(content);
     this.openforedit = true;
   }
 
   delete(item){
-    if(confirm(`Are you sure you want to delete ${item.title}`)){
+    if(confirm(`Are you sure you want to delete ${item.code}`)){
       this.api.deleteZipCode(item.did)
         .then(res => {
-          this.toastr.success('Pizza deleted.','Operation Completed');
+          this.toastr.success('Zip Code deleted.','Operation Completed');
         }, err =>{
           this.toastr.error(err.message,'Error While Deleting.');
         })

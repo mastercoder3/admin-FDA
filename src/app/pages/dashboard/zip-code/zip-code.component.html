@@ -60,13 +60,13 @@
                     <tr
                       *ngFor="let item of zips | filterBy: food | paginate: { itemsPerPage: 10, currentPage: pageNumber }; let i = index">
                       <th scope="row">{{i + 1}}</th>
-                      <td class="small">{{item?.code}}</td>
-                      <td class="small">{{item?.area}}</td>
-                      <td class="small">{{item?.rate}} &euro;</td>
-                      <td class="small">{{item?.minOrder}} &euro;
+                      <td class="small">{{item.code}}</td>
+                      <td class="small">{{item.area}}</td>
+                      <td class="small">{{item.rate}} &euro;</td>
+                      <td class="small">{{item.minOrder}} &euro;
                       </td>
                       <td class="small">
-                        <a (click)="view(zipcodeModal, item)">Edit<i style="color: green;" class="ft-edit"></i></a>
+                        <a (click)="view(zipcodeModal, zips[i])">Edit<i style="color: green;" class="ft-edit"></i></a>
                         <br>
 
                         <a (click)="delete(item)">Klar<i style="color: red" class="ft-trash-2"></i></a>
@@ -89,7 +89,7 @@
 
 <ng-template #zipcodeModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Hinzufügen Vorspeisen</h4>
+    <h4 class="modal-title" id="modal-basic-title">ZIP CODES</h4>
     <button type="button" class="close" aria-label="Close" style="outline: none;"
       (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -165,7 +165,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row"  >
         <button type="button" class="btn btn-secondary btn-min-width ml-2 mb-1" (click)="updateDiscount()">Aktualisieren</button>
       </div>
 
