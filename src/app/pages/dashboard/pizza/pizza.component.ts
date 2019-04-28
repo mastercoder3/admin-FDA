@@ -70,8 +70,8 @@ export class PizzaComponent implements OnInit {
       title: '',
       ingredients: '',
       size: [
-        "Normal",
-        "Familia"
+        "Normal ø ca. 36 cm",
+        "Familia ø ca. 50 cm"
       ],
       price: [
         0,
