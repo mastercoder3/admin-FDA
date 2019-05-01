@@ -109,6 +109,7 @@ export class CategoryItemsComponent implements OnInit {
   }
 
   addItemsToDB(){
+    this.data.date = new Date();
     if(this.data.title !== ''){
       this.api.addToCategoryItems(this.data)
       .then(res =>{

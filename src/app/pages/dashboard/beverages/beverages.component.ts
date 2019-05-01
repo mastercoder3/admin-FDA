@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api/api.service';
+import { ApiService } from './../../../services/api/api.service';
 import { map } from 'rxjs/operators';
 import { HelperService } from 'src/app/services/helper/helper.service';
 import { ToastrService } from 'ngx-toastr';
@@ -63,6 +63,7 @@ export class BeveragesComponent implements OnInit {
   }
 
   addToBeverage(){
+    this.data.date = new Date();
     if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0 ){
       this.api.addBeverage(this.data)
         .then(res =>{
@@ -117,7 +118,7 @@ export class BeveragesComponent implements OnInit {
 
   delete(item){
     if(confirm(`Are you sure you want to delete ${item.title}`)){
-      this.api.deleteVorspeisen(item.did)
+      this.api.deleteBeverage(item.did)
         .then(res => {
           this.toastr.success('Beverage deleted.','Operation Completed');
         }, err =>{

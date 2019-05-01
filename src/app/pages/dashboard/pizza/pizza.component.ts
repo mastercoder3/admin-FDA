@@ -83,10 +83,11 @@ export class PizzaComponent implements OnInit {
   }
 
   addToPizza(){
+    this.data.date = new Date();
     if(this.data.title !== ''){
       this.api.addPizza(this.data)
         .then(res =>{
-          this.toastr.success('Ingredients Added.','Operation Completed Successfully.');
+          this.toastr.success('Pizza Added.','Operation Completed Successfully.');
           this.helper.closeModel();
           this.data = {
             title: '',

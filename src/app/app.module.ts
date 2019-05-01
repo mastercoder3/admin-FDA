@@ -50,6 +50,7 @@ import {ENgxPrintModule} from "e-ngx-print";
 import { AuthGaurdService } from './services/auth-gaurd/auth-gaurd.service';
 import { AddCategoriesComponent } from './pages/dashboard/add-categories/add-categories.component';
 import { CategoryItemsComponent } from './pages/dashboard/category-items/category-items.component';
+import { HelperService } from './services/helper/helper.service';
 
 
 const routes = [
@@ -120,7 +121,7 @@ const routes = [
     FilterPipeModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, AuthService,AuthGaurdService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [ApiService, HelperService, AuthService,AuthGaurdService, AuthService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

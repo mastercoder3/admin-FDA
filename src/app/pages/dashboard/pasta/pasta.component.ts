@@ -76,6 +76,7 @@ export class PastaComponent implements OnInit {
   }
 
   addToPasta(){
+    this.data.date = new Date();
     if(this.data.title !== '' ){
       this.api.addPasta(this.data)
         .then(res =>{

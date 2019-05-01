@@ -61,6 +61,7 @@ export class DessertComponent implements OnInit {
   }
 
   addToDessert(){
+    this.data.date = new Date();
     if(this.data.title !== '' && this.data.size !== '' && this.data.price > 0){
       this.api.addDessert(this.data)
         .then(res =>{
@@ -114,7 +115,7 @@ export class DessertComponent implements OnInit {
 
   delete(item){
     if(confirm(`Are you sure you want to delete ${item.title}`)){
-      this.api.deleteVorspeisen(item.did)
+      this.api.deleteDessert(item.did)
         .then(res => {
           this.toastr.success('Dessert deleted.','Operation Completed');
         }, err =>{
