@@ -26,7 +26,7 @@
     "e-ngx-print": "^5.3.1",
     "firebase": "^5.5.1",
     "html-to-image": "^0.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-chips": "^2.0.0-beta.0",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-pagination": "^3.2.1",
